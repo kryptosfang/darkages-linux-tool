@@ -1,7 +1,7 @@
 # <img src="icon.png" width="32" height="32"> DALT (DarkAges Linux Tool)
 
 <p align="center">
-  <img src="icon_big.png" alt="DarkAges Linux Tool Logo" width="600">
+  <img src="icon_big.png" alt="DarkAges Linux Tool Logo" width="400">
 </p>
 
 This project is a significantly enhanced and hardened fork of the original `ugh-i-cant-use-linux-because` movement and input automation tool, as well as improved functionality from the fork of `ughlis` '. It has been modernized for better stability, security, and accessibility.
