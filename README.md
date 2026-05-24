@@ -51,12 +51,28 @@ This project is a significantly enhanced and hardened fork of the original `ugh-
 *   **Dependencies**: `xdotool`, `python3-evdev`, `python3-tk`
 *   **Permissions**: Access to `/dev/input/` (Run `sudo ./setup_permissions.sh`)
 
-## 📖 Usage
+## 📖 Installation
 
-1.  Initialize the environment: `./setup.sh`
-2.  Start the tools: `./start.sh`
-3.  **Toggle Butterwalk**: `b` (TUI) or use the GUI switch.
-4.  **Manage Macros**: Navigate to the Macros tab to record clicks or bind triggers.
+### 1. Clone the Repository
+```bash
+git clone https://github.com/kryptosfang/darkages-linux-tool.git
+cd darkages-linux-tool
+```
+
+### 2. Run Setup
+The `setup.sh` script will create a virtual environment, install dependencies, and help you configure input permissions.
+```bash
+chmod +x setup.sh setup_permissions.sh
+./setup.sh
+```
+**Note:** If you are added to the `input` group, you MUST log out and log back in (or restart) for changes to take effect.
+
+## How to Run
+
+```bash
+./main.py
+```
+*(Or `venv/bin/python main.py` if not using the shebang. Alternatively, you can double-click main.py and run it standalone or in the terminal.)*
 
 ---
 
