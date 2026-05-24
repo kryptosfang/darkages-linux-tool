@@ -1,0 +1,6 @@
+#!/bin/bash
+# Move to the directory where this script is located
+cd "$(dirname "$0")"
+
+# Run the program using the virtual environment's python
+./venv/bin/python main.py "$@"
