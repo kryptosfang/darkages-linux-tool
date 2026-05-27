@@ -1,7 +1,7 @@
-# <img src="icon.png" width="32" height="32"> DALT (DarkAges Linux Tool)
+# <img src="assets/icon.png" width="32" height="32"> DALT (DarkAges Linux Tool)
 
 <p align="center">
-  <img src="icon_big.png" alt="DarkAges Linux Tool Logo" width="300">
+  <img src="assets/icon_big.png" alt="DarkAges Linux Tool Logo" width="300">
 </p>
 
 This project is a significantly enhanced and hardened fork of the original `ugh-i-cant-use-linux-because` movement and input automation tool, as well as improved functionality from the fork of `ughlis` '. It has been modernized for better stability, security, and accessibility.
@@ -60,19 +60,19 @@ cd darkages-linux-tool
 ```
 
 ### 2. Run Setup
-The `setup.sh` script will create a virtual environment, install dependencies, and help you configure input permissions.
+The `scripts/setup.sh` script will create a virtual environment, install dependencies, and help you configure input permissions.
 ```bash
-chmod +x setup.sh setup_permissions.sh
-./setup.sh
+chmod +x scripts/setup.sh scripts/setup_permissions.sh scripts/darkages-linux-tool
+./scripts/setup.sh
 ```
 **Note:** If you are added to the `input` group, you MUST log out and log back in (or restart) for changes to take effect.
 
 ## How to Run
 
 ```bash
-./main.py
+./scripts/darkages-linux-tool
 ```
-*(Or `venv/bin/python main.py` if not using the shebang. Alternatively, you can double-click main.py and run it standalone or in the terminal.)*
+*(Alternatively, you can run `./main.py` directly if you have activated the virtual environment.)*
 
 ---
 
