@@ -62,11 +62,37 @@ def _fire_callbacks(event: InputEvent, key_name: str, device_name: str = "Unknow
 def setup_devices() -> None:
     global _uinput
     try:
+        # Define capabilities for a composite keyboard + mouse pointer device
+        keys = [
+            ecodes.KEY_LEFT, ecodes.KEY_RIGHT, ecodes.KEY_UP, ecodes.KEY_DOWN,
+            ecodes.KEY_SPACE, ecodes.KEY_ENTER, ecodes.KEY_TAB, ecodes.KEY_ESC,
+            ecodes.KEY_BACKSPACE, ecodes.KEY_DELETE, ecodes.KEY_INSERT,
+            ecodes.KEY_HOME, ecodes.KEY_END, ecodes.KEY_PAGEUP, ecodes.KEY_PAGEDOWN,
+            ecodes.KEY_MINUS, ecodes.KEY_EQUAL,
+            ecodes.BTN_LEFT, ecodes.BTN_RIGHT, ecodes.BTN_MIDDLE,
+            ecodes.KEY_LEFTSHIFT, ecodes.KEY_RIGHTSHIFT, ecodes.KEY_LEFTCTRL, ecodes.KEY_LEFTALT
+        ]
+        
+        # Standard letters A-Z
+        for c in range(ord("A"), ord("Z") + 1):
+            keys.append(getattr(ecodes, f"KEY_{chr(c)}"))
+        # Digits 0-9
+        for i in range(10):
+            keys.append(getattr(ecodes, f"KEY_{i}"))
+        # Function keys F1-F12
+        for i in range(1, 13):
+            keys.append(getattr(ecodes, f"KEY_F{i}"))
+            
+        cap = {
+            ecodes.EV_KEY: keys,
+            ecodes.EV_REL: [ecodes.REL_X, ecodes.REL_Y]
+        }
+
         all_devices: list[InputDevice[str]] = [
             evdev.InputDevice(path) for path in evdev.list_devices()
         ]
         # Create virtual device for re-emission
-        _uinput = UInput(name="DarkAges-Virtual-Input")
+        _uinput = UInput(events=cap, name="DarkAges-Virtual-Input")
     except Exception:
         all_devices = []
 

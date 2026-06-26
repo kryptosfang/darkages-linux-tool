@@ -27,7 +27,7 @@ echo ""
 read -pr "Would you like to add '$CURRENT_USER' to the 'input' group now? (y/n): " confirm
 
 if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
-  "$(dirname "$0")/setup_permissions.sh"
+  ./setup_permissions.sh
 else
     echo "Operation cancelled. You will still need to use 'sudo' to run the walk script."
 fi

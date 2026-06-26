@@ -1,8 +1,9 @@
 from __future__ import annotations
 import asyncio
-import subprocess
 from evdev.events import InputEvent
 from state import state
+import injector
+
 
 KEY_MAP: dict[str, str] = {
     "KEY_SPACE": "space",
@@ -82,16 +83,7 @@ async def injection_loop() -> None:
 
             for target in active_targets:
                 for _ in range(state["multiplier"]):
-                    # Bypass shell parsing overhead by using exec directly
-                    proc = await asyncio.create_subprocess_exec(
-                        "xdotool", "key", target,
-                        stdout=asyncio.subprocess.DEVNULL,
-                        stderr=asyncio.subprocess.DEVNULL
-                    )
-                    # Yield control back to the event loop while waiting for this specific key to finish
-                    await proc.wait()
-                    
-                    # Tiny yield to ensure X11 registers the event before the next iteration
-                    await asyncio.sleep(0.001)
+                    await injector.key(target)
 
         await asyncio.sleep(state["loop_interval"])
+

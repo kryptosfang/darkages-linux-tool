@@ -85,9 +85,9 @@ def _normalize_trigger(raw: str) -> str | None:
     return None
 
 
-def _parse_sequence(seq: str) -> list[MacroStep]:
+def _parse_sequence(seq: str, default_delay_ms: int = 0) -> list[MacroStep]:
     """Parse a sequence string into MacroSteps.
-    No automatic delays are added.
+    Applies the default delay to steps (except explicit wait steps).
     """
     steps: list[MacroStep] = []
     i = 0
@@ -101,18 +101,18 @@ def _parse_sequence(seq: str) -> list[MacroStep]:
                 continue
             inner = seq[i + 1 : j].strip().lower()
             if inner in ("click", "lclick", "mouse_left"):
-                steps.append(MacroStep(kind="mouse_left", value="", delay_ms=0))
+                steps.append(MacroStep(kind="mouse_left", value="", delay_ms=default_delay_ms, x=None, y=None))
             elif inner in ("rclick", "mouse_right"):
-                steps.append(MacroStep(kind="mouse_right", value="", delay_ms=0))
+                steps.append(MacroStep(kind="mouse_right", value="", delay_ms=default_delay_ms, x=None, y=None))
             elif inner.startswith("wait:"):
                 try:
                     ms = int(inner.split(":")[1])
-                    steps.append(MacroStep(kind="wait", value="", delay_ms=ms))
+                    steps.append(MacroStep(kind="wait", value="", delay_ms=ms, x=None, y=None))
                 except: pass
             elif inner in _SPECIAL_XDOTOOL:
                 steps.append(
                     MacroStep(
-                        kind="key", value=_SPECIAL_XDOTOOL[inner], delay_ms=0
+                        kind="key", value=_SPECIAL_XDOTOOL[inner], delay_ms=default_delay_ms, x=None, y=None
                     )
                 )
             i = j + 1
@@ -120,7 +120,7 @@ def _parse_sequence(seq: str) -> list[MacroStep]:
             val = ch
             if ch == "-": val = "minus"
             elif ch == "=": val = "equal"
-            steps.append(MacroStep(kind="key", value=val, delay_ms=0))
+            steps.append(MacroStep(kind="key", value=val, delay_ms=default_delay_ms, x=None, y=None))
             i += 1
         else:
             i += 1

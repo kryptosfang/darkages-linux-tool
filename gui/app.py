@@ -34,7 +34,7 @@ class MacroEditor(ctk.CTkToplevel):
         
         # Set icon
         try:
-            self.icon_img = tk.PhotoImage(file='assets/icon.png')
+            self.icon_img = tk.PhotoImage(file='icon.png')
             self.wm_iconphoto(False, self.icon_img)
         except Exception:
             pass
@@ -378,7 +378,7 @@ class DarkAgesApp(ctk.CTk):
 
         # Set icon
         try:
-            self.icon_img = tk.PhotoImage(file='assets/icon.png')
+            self.icon_img = tk.PhotoImage(file='icon.png')
             self.wm_iconphoto(False, self.icon_img)
         except Exception:
             pass

@@ -47,6 +47,8 @@ class MacroStep(TypedDict):
     y: int | None
 
 
+
+
 class Macro(TypedDict):
     id: str
     name: str

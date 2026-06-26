@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=DarkAges Linux Tool
-Exec=/opt/darkages-linux-tool/scripts/darkages-linux-tool
-Path=/opt/darkages-linux-tool
-Icon=/opt/darkages-linux-tool/assets/icon_big.png
-Type=Application
-Terminal=false
-Categories=Utility;
